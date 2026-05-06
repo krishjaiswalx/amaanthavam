@@ -16,7 +16,13 @@ const applicationRoutes = require('./routes/applicationRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allows all origins - safest for hackathon/selection round deployment
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Ensure uploads directory exists (local fallback)
